@@ -1,0 +1,28 @@
+<header>
+    <div class="grid-x grid-margin-x header">
+        <div class="cell small-12 medium-4 large-3">
+            <a href="/" style="font-size: 20px; color: #0277bd;">
+                JaviLazaro SEO
+            </a>
+        </div>
+        <div class="cell small-12 medium-4">
+            
+        </div>
+        <div class="cell small-12 large-5">
+            <ul class="menu" style="justify-content: flex-end;">
+                <li>
+                    <a href="{% url 'entrada_app:entry-lista' %}">Blog</a>
+                </li>
+                
+                    {% if not user.is_anonymous %}
+                        <li><a href="{% url 'favoritos_app:perfil' %}" class="warning button">Perfil</a></li>
+                        <li><a href="{% url 'scraperprensarank_app:lista-prensarank' %}">Prensarank</a></li>
+                    {% else %}
+       
+                        <li><a href="{% url 'users_app:user-login' %}" class="success button">Acceder</a></li>
+
+                     {% endif %}
+            </ul>
+        </div>
+    </div>
+</header>
