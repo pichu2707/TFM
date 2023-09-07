@@ -1,0 +1,59 @@
+<!-- head para PC -->
+{% extends "users/base_users.html" %}
+{% load  static %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<div class="grid-container">
+    <div class="grid-x grid-margin-x align-center">
+        <div class="cell medium-10 large-6" style="margin-top: 2em;">
+            <div class="card" style="width: 100%;">
+                <div class="card-divider">
+                  <h4>Ingrese sus datos</h4>
+                </div>
+                <div class="card-section">
+                    <form class="grid-x grid-margin-x" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                        <div class="cell large-12">
+                                
+                            <label>Email:
+                                {{ form.email }}
+                            </label>
+                        </div>
+                        <div class="cell large-6">
+                            <label>Nombres:
+                                {{ form.full_name }}
+                            </label>
+                        </div>
+                        <div class="cell medium-6">
+                            <label>Fecha Nacimiento:
+                                {{ form.date_birth}}
+                            </label>
+                        </div>
+                        <div class="cell medium-12">
+                            <label>Contraseña:
+                                {{ form.password1}}
+                            </label>
+                        </div>
+                        <div class="cell medium-12">
+                            <label>Repetir Contraseña:
+                                {{ form.password2 }}
+                            </label>
+                            
+                            {% for e in form.password2.errors %}
+                                <p style="color: red;">{{ e }}</p>
+                                
+                            {% endfor %}
+                                
+                        </div>
+                        <button type="submit" class="cell hollow button primary">Registrar</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
