@@ -70,6 +70,7 @@ def escribir_text_en_element_by_tipo_selector(driver, wait, tipoSelector, textoS
     except Exception as e:
         pass
 
+# Toma los medios desde las peticiones JQuery
 def js_function_get_medios_prensarank():
     return """
         let medios = []; 
@@ -79,6 +80,7 @@ def js_function_get_medios_prensarank():
         return medios;
     """
 
+#Toma las ID de los medios por JQuery
 def js_function_get_medios_ids_prensarank():
     return """
         let mediosIds = []; 
@@ -87,9 +89,12 @@ def js_function_get_medios_ids_prensarank():
             });
         return mediosIds;
     """
+
+#Función de selección de opciones
 def select_change_option(agrupacionSelector, texto, estado):
     return '$(\'select#' + agrupacionSelector + ' option:contains("' + texto + '")\').prop(\'selected\', ' + estado + ').change();'
 
+#Toma la estructura de las tablas
 def get_estructura_ths_thead(tr):
     datos = []
     ths = tr.find_elements(By.TAG_NAME, 'th')
@@ -98,7 +103,7 @@ def get_estructura_ths_thead(tr):
 
     return datos
 
-
+#Comprueba que no ha habido cambios en la estructura
 def comprobar_estructora_sin_cambios(estructura):
     estructuraSinCambios = False
     if(estructura == ['NOMBRE', 'PAÍS', 'DR', 'DA', 'CF', 'TF', 'OBL', 'RD', 'TRÁFICO', 'PRECIO', '']):
@@ -106,6 +111,7 @@ def comprobar_estructora_sin_cambios(estructura):
 
     return estructuraSinCambios
 
+#Toma la cabecera de las tablas
 def get_estructura_ths_thead_arr_pos_cabeceras(tr):
     arrPosCabeceras = {}
     contador = 0
@@ -116,6 +122,7 @@ def get_estructura_ths_thead_arr_pos_cabeceras(tr):
 
     return arrPosCabeceras
 
+#Toma la tabla de Prensarank
 def get_table_data_prensarank(driver, wait):
     try:
         dataFinal = []
@@ -175,6 +182,7 @@ def get_table_data_ids_prensarank(driver, wait):
         except:
             pass
 
+#Toma las opciones seleccionadas
 def js_function_get_select_options(selector, valOText):
     js = 'let options = [];'
     js += '$("' + selector + '").each(function(){'
