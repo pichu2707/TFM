@@ -1,0 +1,11 @@
+2023-08-14 13:23:43,229 - INFO - ====== WebDriver manager ======
+2023-08-14 13:23:43,326 - INFO - Get LATEST chromedriver version for google-chrome
+2023-08-14 13:23:43,326 - INFO - Get LATEST chromedriver version for google-chrome
+2023-08-14 13:23:43,327 - INFO - There is no [linux64] chromedriver "115.0.5790.170" for browser google-chrome "115.0.5790.170" in cache
+2023-08-14 13:23:43,327 - INFO - Get LATEST chromedriver version for google-chrome
+2023-08-14 13:23:43,463 - INFO - WebDriver version 115.0.5790.170 selected
+2023-08-14 13:23:43,464 - INFO - Modern chrome version https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/115.0.5790.170/linux64/chromedriver-linux64.zip
+2023-08-14 13:23:43,465 - INFO - About to download new driver from https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/115.0.5790.170/linux64/chromedriver-linux64.zip
+2023-08-14 13:23:43,622 - INFO - Driver downloading response is 200
+2023-08-14 13:23:44,275 - INFO - Get LATEST chromedriver version for google-chrome
+2023-08-14 13:23:44,387 - INFO - Driver has been saved in cache [/home/javier/.wdm/drivers/chromedriver/linux64/115.0.5790.170]

@@ -1,0 +1,77 @@
+<!-- head para PC -->
+{% extends "entrada/base_entrada.html" %}
+{% load  static %}
+{% block title %}
+{{ entry.title}}
+{% endblock title %}
+{% block description %}
+<meta name="description" content="{{ entry.resumen }}">
+{% endblock description %}
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<div class="grid-container">
+    <div class="grid-x grid-margin-x" style="margin-top: 1em;">
+        <h3 class="cell">{{ object.title }}</h3>
+           
+        
+        {% if prensarank %}
+            
+                <table>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>URL</th>
+                        <th>País</th>
+                        <th>Tráfico</th>
+                        <th>Precio</th>
+                    </tr>
+                     {% for i in prensarank %}
+                    <tr>
+                        <td>{{i.name}}</td>
+                        <td>{{i.url}}</td>
+                        <td>{{i.country}}</td>
+                        <td>{{i.traffic}}</td>
+                        <td>{{i.price}}</td>
+                    </tr>
+                    {% endfor %}
+             {% endif %}
+             
+                </table>
+                    <!-- inicio de bloque de paginacion -->
+    <div class="cell">
+        
+        {% if is_paginated %}
+        <nav aria-label="Pagination">
+            <ul class="pagination">
+                
+                {% if page_obj.has_previous %}
+                <li class="pagination-previous">
+                    <a href="?page={{page_obj.previous_page_number}}"> Atrás</a>
+                </li>
+                {% endif %}
+                    
+                    {% for pagina in paginator.page_range %} 
+
+                    {% if pagina == page_obj.number %} 
+                        <li class="current"><span class="show-for-sr">you're on page</span> </li>
+                    {% else %}
+                        <li class=""><a href="?page={{pagina}}">{{ pagina }}</a></li>       
+                    {% endif %}                               
+                    {% endfor %}
+                    
+                    {% if page_obj.has_next %}
+                    <li class="pagination-next">
+                        <a href="?page={{page_obj.next_page_number}}">Siguiente</a>
+                    </li>
+                    {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+    <!-- FIN bloque de paginacion -->
+    </div>
+</div>
+{% include "includes/footer.html" %}
+
+{% endblock content %}
