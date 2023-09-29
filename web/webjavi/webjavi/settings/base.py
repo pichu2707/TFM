@@ -39,11 +39,11 @@ LOCAL_APPS = (
     'applications.entrada',
     'applications.favoritos',
     # 'applications.scraper',
-    # 'applications.scraperconexoo',
+    'applications.scraperconexoo',
     # 'applications.scraperleolytics',
     'applications.scraperprensarank',
     # 'applications.scraperpublisuites',
-    # 'applications.scraperteblogueo',
+    'applications.scraperteblogueo',
     # 'applications.scraperseolyze',
     # 'applications.scraperunancor',
 )
