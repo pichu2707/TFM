@@ -1,0 +1,12 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+TwoCaptcha.egg-info/PKG-INFO
+TwoCaptcha.egg-info/SOURCES.txt
+TwoCaptcha.egg-info/dependency_links.txt
+TwoCaptcha.egg-info/requires.txt
+TwoCaptcha.egg-info/top_level.txt
+twocaptcha/__init__.py
+twocaptcha/wrapper.py

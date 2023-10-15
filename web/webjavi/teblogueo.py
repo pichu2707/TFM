@@ -23,7 +23,7 @@ from scraperlinkbuilding import *
 
 def obtener_datos():
     escanerConfig = get_config()
-    driver = crear_driver_chrome(False)
+    driver = crear_driver_chrome(True)
     wait = WebDriverWait(driver, escanerConfig['timeoutSeconds'])
 
     # Abrir Teblogueo
@@ -268,45 +268,52 @@ def obtener_datos():
                     medio['model']
                 )
             )
-            return lista
+        print(f' esto es la lista --> {lista}')
+        
 
-    dataFinalTuplas = transformar_arr_en_lista_tuplas_teblogeo(dataFinal, escanerConfig['teblogueoUrl'])
-    columns_name = ['id','nombre','url_link','url_site', 'DA', 'DF','DR', #0-6
-    'PA','UR','trust_flow','is_mine','is_offer','max_links','peffer_pvp','ppvp','visits_month','sponsored_mark', 'link_type',#7-17
-    'language','blog_topics','country','link_type', #18-21
-    'medioTematico','medioTipo','model'] #22-24
 
-    df = pd.DataFrame(dataFinalTuplas, columns=columns_name)
-    print(df)
-    return dataFinalTuplas
+        dataFinalTuplas = transformar_arr_en_lista_tuplas_teblogeo(dataFinal, escanerConfig['teblogueoUrl'])
+        columns_name = ['id','nombre','url_link','url_site', 'DA', 'DF','DR', #0-6
+        'PA','UR','trust_flow','is_mine','is_offer','max_links','peffer_pvp','ppvp','visits_month','sponsored_mark', 'link_type',#7-17
+        'language','blog_topics','country','link_type', #18-21
+        'medioTematico','medioTipo','model'] #22-24
 
-def guardar_datos(lista):
-    for item in lista:
+        df = pd.DataFrame(dataFinalTuplas, columns=columns_name)
+        print(df)
+        return lista
+    print(f' el print de dataFinal --> {dataFinal}')
+    return dataFinal
+
+def guardar_datos(dataFinal):
+    datos_temporales = []
+    for item in dataFinal:
         dato = ScraperTeblogueo(
-                        # name=item['fields']['name'],
-                        # url=item['fields']['url'],
-                        # trust_flow = item['fields']['trust_flow'],
-                        # visits_month = item['fields']['visits_month'],
-                        # peffer_pvp = item['fields']['poffer_pvp'],
-                        # ppvp=item['fields']['ppvp'],
-                        # max_links=item['fields']['max_links'],
-                        # sponsored_mark = item['fields']['sponsored_mark'],
-                        # model = item['model'],
+                        name=item['fields']['name'],
+                        url=item['fields']['url'],
+                        trust_flow = item['fields']['trust_flow'],
+                        visits_month = item['fields']['visits_month'],
+                        peffer_pvp = item['fields']['poffer_pvp'],
+                        ppvp=item['fields']['ppvp'],
+                        max_links=item['fields']['max_links'],
+                        sponsored_mark = item['fields']['sponsored_mark'],
+                        model = item['model'],
                         
-                        name = item[1],  
-                        url = item[2],
-                        trust_flow = item[9],
-                        visits_month = item[15],
-                        peffer_pvp = item[13],
-                        ppvp = item[14],
-                        max_links = item[12],
-                        sponsored_mark = item[16],
-                        model = item[24],
+                        # name = item[1],  
+                        # url = item[2],
+                        # trust_flow = item[9],
+                        # visits_month = item[15],
+                        # peffer_pvp = item[13],
+                        # ppvp = item[14],
+                        # max_links = item[12],
+                        # sponsored_mark = item[16],
+                        # model = item[24],
                     )   
-        
-
-        print(item[22], item[23],item[21],item[20],item[19])
-        
+                  # Añadir el nuevo registro a la lista temporal
+        datos_temporales.append(dato)    
+    # Una vez que todos los datos se han añadido a la lista temporal,
+    # borrar los registros antiguos.
+    ScraperTeblogueo.objects.all().delete()
+    for dato in datos_temporales:
         dato.save()
         
 if __name__== '__main__':

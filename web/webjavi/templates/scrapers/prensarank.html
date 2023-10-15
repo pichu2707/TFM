@@ -52,12 +52,13 @@
                 {% endif %}
                     
                     {% for pagina in paginator.page_range %} 
-
+                    {% if forloop.last and page != entity.number and paginator.num_pages > 7 %} 
                     {% if pagina == page_obj.number %} 
                         <li class="current"><span class="show-for-sr">you're on page</span> </li>
                     {% else %}
                         <li class=""><a href="?page={{pagina}}">{{ pagina }}</a></li>       
-                    {% endif %}                               
+                    {% endif %}      
+                    {% endif %}                           
                     {% endfor %}
                     
                     {% if page_obj.has_next %}

@@ -14,5 +14,8 @@
     "teBlogueoLanguageExcluir" : [],
     "teBlogueoBlogTopicsExcluir" : [],
     "teBlogueoCountryIncluir" : [],
-    "teBlogueoLinkTypeExcluir" : []
+    "teBlogueoLinkTypeExcluir" : [],
+    "conexookUrl" : "https://www.conexoo.com/",
+    "conexookUser" : "info@posicionamientowebibiza.com",
+    "conexookPass" : "amelie1313"
 }
