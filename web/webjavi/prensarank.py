@@ -17,7 +17,6 @@ import pandas as pd
 from scraperlinkbuilding import *
 
 # Tomaresmos los datos del json para agilizar los trabajos y tener un lugar donde poder gestionarlo
-print('primer paso')
 
 def obtener_datos():
     escanerConfig = get_config()

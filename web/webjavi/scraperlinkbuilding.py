@@ -13,6 +13,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
+import logging
+
 """Creamos una conexión con el drive de Chrome a internet, teniendo en cuenta los diferentes sistemas operativos y 
 tipos de pantallas """
 
@@ -29,6 +31,9 @@ def crear_driver_chrome(headless=True):
     options.add_argument('--lang=es')
     options.add_experimental_option('prefs', {'intl.accept_languages': 'es,es_ES'})
 
+    # selenium_logger = logging.getLogger("selenium")
+    # selenium_logger.setLevel(logging.DEBUG)
+    # selenium_logger.addHandler(logging.StreamHandler())
     # Uso de Service() con ChromeDriverManager
 
     s = Service(ChromeDriverManager().install())
@@ -53,6 +58,23 @@ def click_element_by_tipo_selector(driver, wait, tipoSelector, textoSelector):
         driver.execute_script("arguments[0].click();", elemento)
     except Exception as e:
         pass
+
+#Clic en elemento por valor del texto del link
+
+def click_element_by_link_text(driver, wait, tipoLink, textoLink):
+    try:
+        elemento = wait.until(EC.presence_of_element_located((tipoLink, textoLink)))
+        elemento.click()
+    except Exception as e:
+        pass
+
+def click_element_by_id(driver,wait,tipoId,textoId):
+    try:
+        element = wait.until(EC.presence_of_element_located(tipoId, textoId))
+        element.click()
+    except Exception as e:
+        pass
+
 
 #Clic en elementor sin JS que seleccionemos
 def click_element_sin_js_by_tipo_selector(driver, wait, tipoSelector, textoSelector):
