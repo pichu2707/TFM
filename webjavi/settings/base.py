@@ -1,27 +1,16 @@
-from django.core.exceptions import ImproperlyConfigured
-import json
-import os
+from pathlib import Path
 
-from unipath import Path
+import environ
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).ancestor(3)
+# Project root (the directory that contains manage.py).
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-
-# SECURITY WARNING: keep the secret key used in production secret!
-with open("/home/javier/Documentos/TFM/web/webjavi/***REDACTED***") as f:
-    secret = json.loads(f.read())
-
-def get_secret(secret_name, secrets=secret):
-    try:
-        return secrets[secret_name]
-    except:
-        msg = "la variable %s no existe" % secret_name
-        raise ImproperlyConfigured(msg)
-
+env = environ.Env()
+# Read variables from a .env file at the project root when it exists.
+environ.Env.read_env(BASE_DIR / '.env')
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '***REDACTED***'
+SECRET_KEY = env('SECRET_KEY')
 
 # Application definition
 DJANGO_APPS = (
@@ -72,7 +61,7 @@ ROOT_URLCONF = 'webjavi.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates/'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -3,30 +3,31 @@ from .base import *
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DEBUG', default=True)
 
-ALLOWED_HOSTS = []
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 
+# Database. PostgreSQL is required: several scraper models declare CharField
+# without max_length, which the SQLite backend cannot create.
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',#postgresql_psycopg2 sqlite3
-        'NAME': '***REDACTED***',
-        'USER': 'javilazaro',
-        'PASSWORD': '***REDACTED***',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('DB_NAME', default='webjavi'),
+        'USER': env('DB_USER', default='postgres'),
+        'PASSWORD': env('DB_PASSWORD', default=''),
+        'HOST': env('DB_HOST', default='localhost'),
+        'PORT': env('DB_PORT', default='5432'),
     }
 }
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR.child('static')]
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR.child('media')
+MEDIA_ROOT = BASE_DIR / 'media'
 
 #ckeditor settings
 CKEDITOR_UPLOAD_PATH = 'uploads/'

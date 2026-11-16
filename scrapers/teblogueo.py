@@ -17,7 +17,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 import pandas as pd
-from scraperlinkbuilding import *
+from scrapers.scraperlinkbuilding import *
 
 # Tomaresmos los datos del json para agilizar los trabajos y tener un lugar donde poder gestionarlo
 

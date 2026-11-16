@@ -44,9 +44,16 @@ def crear_driver_chrome(headless=True):
 
     return driver
 
-# Tomamos los datos del json config
+# Platform credentials and filters live in config.json at the repository root
+# (copy config.example.json). Override the location with SCRAPER_CONFIG.
+CONFIG_PATH = os.environ.get(
+    'SCRAPER_CONFIG',
+    os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'config.json'),
+)
+
+
 def get_config():
-    with open('/home/javier/Documentos/TFM/web/webjavi/config.json', encoding='utf-8') as json_file:
+    with open(CONFIG_PATH, encoding='utf-8') as json_file:
         data = json.load(json_file)
         escanerConfig = dict(data)
     return escanerConfig

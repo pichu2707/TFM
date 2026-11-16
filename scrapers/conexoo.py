@@ -14,7 +14,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 
 import os
-from scraperlinkbuilding import *
+from scrapers.scraperlinkbuilding import *
 
 def obtener_datos():
     escanerConfig = get_config()

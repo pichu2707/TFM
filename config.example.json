@@ -1,0 +1,18 @@
+{
+  "timeoutSeconds": 10,
+  "prensarankUrl": "https://prensarank.com/login",
+  "prensarankUser": "your-email@example.com",
+  "prensarankPass": "your-password",
+  "prensarankLangFilterExcluir": [],
+  "prensarankCategoryFilterExcluir": [],
+  "teblogueoUrl": "https://teblogueo.com/login",
+  "teblogueoUser": "your-user",
+  "teblogueoPass": "your-password",
+  "teBlogueoLanguageExcluir": [],
+  "teBlogueoBlogTopicsExcluir": [],
+  "teBlogueoCountryIncluir": [],
+  "teBlogueoLinkTypeExcluir": [],
+  "conexookUrl": "https://conexoo.com/login",
+  "conexookUser": "your-user",
+  "conexookPass": "your-password"
+}
