@@ -150,7 +150,7 @@ pip install -r requirements-notebooks.txt
 jupyter notebook notebooks/
 ```
 
-**Conflicto de dependencias conocido.** `requirements.txt` fija `requests==2.23.0` y `selenium==4.10.0`, que declaran requisitos incompatibles sobre `urllib3`. En la práctica, instala sin problema con `requests==2.31.0` en Python 3.9. Se mantiene tal cual para conservar el entorno original; se discute en la retrospectiva.
+**Conflicto de dependencias resuelto.** El proyecto original fijaba `requests==2.23.0` junto a `selenium==4.10.0`, que declaran requisitos incompatibles sobre `urllib3`. `requirements.txt` usa ahora `requests==2.31.0`, que instala en Python 3.9; se discute en la retrospectiva.
 
 Las credenciales que aparecían en los notebooks originales se sustituyeron por `***REDACTED***`.
 
@@ -183,7 +183,7 @@ Mirando el proyecto con la experiencia de hoy, estos son los problemas de diseñ
 
 | Problema (dónde) | Por qué es un problema | Qué haría hoy |
 |---|---|---|
-| Dependencias antiguas y en conflicto: `requests==2.23.0` frente a `selenium==4.10.0`; pandas 1.2.3 obliga a Python 3.9; `beautifulsoup4` sin versión en `requirements-notebooks.txt` | Entorno difícil de reproducir, con riesgo de seguridad por versiones antiguas | `pip-tools` o `uv` con *lock file*, versiones compatibles y Jupyter separado del runtime (ya separado en un segundo archivo, pero tarde) |
+| Dependencias antiguas y en conflicto: `requests==2.23.0` frente a `selenium==4.10.0` (corregido después a `requests==2.31.0`); pandas 1.2.3 obliga a Python 3.9; `beautifulsoup4` sin versión en `requirements-notebooks.txt` | Entorno difícil de reproducir, con riesgo de seguridad por versiones antiguas | `pip-tools` o `uv` con *lock file*, versiones compatibles y Jupyter separado del runtime (ya separado en un segundo archivo, pero tarde) |
 | Credenciales y entorno dentro del repositorio al inicio. Hoy el historial está limpio, pero la limpieza fue posterior: `.gitignore` se añadió en 2026 (`39ab4ce`) y los notebooks conservan marcas `***REDACTED***` (`be64b2d`) | Un secreto subido sigue comprometido aunque se reescriba el historial; hay que rotarlo | `.gitignore` y variables de entorno desde el primer commit; `.env.example` versionado; un escáner de secretos como pre-commit |
 | Credenciales de prueba del panel de administración en el anexo de la propia memoria (`docs/TFM_FranciscoJavierLazaro.docx.pdf`, p. 15) | Mismo problema: un dato sensible en un documento público | Entregar credenciales por un canal aparte o usar datos de demo que no existan en ningún entorno real |
 | Estructura de carpetas improvisada: historial con "resubiendo el proyecto por problemas de carpetas mal colocadas" (`1f8a79f`) y reorganización posterior para llevar el proyecto Django a la raíz (`591af8a`); el proyecto original estaba anidado | Fricción para clonar, ejecutar y revisar | Plantilla de proyecto clara desde el inicio: `manage.py` en la raíz, `src` o `applications`, `docs`, `notebooks` |

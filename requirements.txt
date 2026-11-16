@@ -11,6 +11,6 @@ psycopg2-binary==2.9.6
 # Scrapers
 selenium==4.10.0
 webdriver-manager==4.0.0
-requests==2.23.0
+requests==2.31.0
 pandas==1.2.3
 numpy==1.25.1
