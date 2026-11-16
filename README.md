@@ -14,7 +14,7 @@ Este proyecto automatiza la captura de esos catálogos, los guarda en una base d
 
 - Scrapers con Selenium para Prensarank, Teblogueo y Conexoo, con filtros configurables (idioma, categoría, país, tipo de enlace).
 - Persistencia de los medios capturados mediante el ORM de Django.
-- Web con listados por plataforma, blog (CKEditor), favoritos y usuarios propios.
+- Web con el listado de Prensarank (Teblogueo y Conexoo con modelos, sin vistas terminadas), blog (CKEditor), favoritos y usuarios propios.
 - Notebooks de análisis comparativo, con CSV de resultados.
 
 ## Stack
@@ -54,12 +54,12 @@ Este proyecto automatiza la captura de esos catálogos, los guarda en una base d
 
 1. Los scripts de `scrapers/` inician sesión en cada plataforma con Selenium, recorren el catálogo y normalizan los datos.
 2. Cada script inicializa Django (`django.setup()`) y guarda los resultados en los modelos de `applications/scraper*`.
-3. La web de Django lee esos modelos y muestra los listados por plataforma.
+3. La web de Django lee esos modelos y muestra los listados (implementado para Prensarank).
 4. Los notebooks de `notebooks/` trabajan sobre los datos capturados (CSV) para la comparativa de la memoria.
 
 ## Inicio rápido
 
-Requiere Python 3.9 o superior y Chrome instalado (para los scrapers).
+Requiere Python 3.9 (las versiones fijadas de pandas/numpy no instalan en 3.10+), PostgreSQL y Chrome instalado (para los scrapers).
 
 ```bash
 python -m venv .venv
