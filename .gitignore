@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Secrets and local configuration
+.env
+config.json
+secret.json
+secret.env
+
+# Databases and logs
+*.sqlite3
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Browser drivers
+chromedriver*
+geckodriver*
+
+# Editors and tooling
+.idea/
+.vscode/
+.atl/
