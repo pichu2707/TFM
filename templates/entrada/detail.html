@@ -30,7 +30,7 @@
         <!-- bloque llamada a la accion -->
         <div class="cell large-4">
             <div class="card" style="width: 100%;">
-                <img src="/home/javier/Documentos/TFM/web/webjavi/static/img/9ccd3198-8fa2-42e1-ba24-77d73ac135fb.png">
+                <img src="{% static 'img/9ccd3198-8fa2-42e1-ba24-77d73ac135fb.png' %}">
                 <div class="card-section" style="width: 100%;">
                   <form class="blog-action" action="{% url 'favoritos_app:add-favoritos' entry.id %}" method="POST">{% csrf_token %}
                     <button type="submit" class="button alert">Agregar a Favoritos</button>
