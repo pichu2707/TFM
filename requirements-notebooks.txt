@@ -1,0 +1,4 @@
+-r requirements.txt
+ipykernel==6.24.0
+ipython==8.14.0
+beautifulsoup4
